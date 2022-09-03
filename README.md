@@ -26,13 +26,13 @@ and cross-compile the Windows binary directly from WSL.
 
 ### Building wsl-relay.exe
 
-Once you have Go installed (and your GOPATH configured), you need to download
-and install the tool. This is a little tricky because we are building the tool
-for Windows from WSL:
+Once you have Go installed you need to download and install the tool.
+This is a little tricky because we are building the tool for Windows from WSL:
 
 ```bash
-$ go get -d github.com/lexicality/wsl-relay
-$ GOOS=windows go build -o /mnt/c/Users/<myuser>/go/bin/wsl-relay.exe github.com/lexicality/wsl-relay
+$ git clone https://github.com/Lexicality/wsl-relay.git
+$ cd wsl-relay
+$ GOOS=windows go build -o /mnt/c/Users/<myuser>/go/bin/wsl-relay.exe
 ```
 
 In this example, we have put the binary in `/mnt/c/Users/<myuser>/go/bin`. We
