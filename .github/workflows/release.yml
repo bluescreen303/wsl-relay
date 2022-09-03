@@ -11,21 +11,16 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
-
-      - name: Init
-        env:
-          GOOS: windows
-        run: go mod init github.com/Lexicality/wsl-relay; go mod tidy
+          go-version: 1.19
 
       - name: Build
         env:
           GOOS: windows
-        run: go build -o wsl-relay
+        run: go build
 
       - name: Upload to Release
         uses: Shopify/upload-to-release@v1.0.1
         with:
           name: wsl-relay.exe
-          path: ./wsl-relay
+          path: ./wsl-relay.exe
           repo-token: ${{ secrets.GITHUB_TOKEN }}
