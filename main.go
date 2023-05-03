@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"log"
+	"net"
 	"os"
 	"path/filepath"
 	"sync"
@@ -23,6 +24,7 @@ var (
 	verbose         = flag.BoolP("verbose", "v", false, "verbose output on stderr")
 	namedPipe       = flag.String("pipe", "", "The name of the pipe you wish to connect to")
 	gpgFile         = flag.String("gpg", "", "To location of your windows GPG agent socket")
+	tcpPort         = flag.String("tcp", "", "The tcp port to connect to")
 )
 
 func underlyingError(err error) error {
@@ -70,6 +72,8 @@ func main() {
 		}
 
 		conn, err = dialAssuan(fileName, *poll)
+	} else if *tcpPort != "" {
+		conn, err = net.Dial("tcp", *tcpPort)
 	} else {
 		log.Fatalln("No action specified!")
 		flag.Usage()
